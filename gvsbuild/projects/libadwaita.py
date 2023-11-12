@@ -12,6 +12,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, see <http://www.gnu.org/licenses/>.
+import shutil
+import sys
 
 from gvsbuild.utils.base_builders import Meson
 from gvsbuild.utils.base_expanders import Tarball
@@ -49,7 +51,10 @@ class Libadwaita(Tarball, Meson):
         self.add_param(f"-Dintrospection={gir}")
         self.add_param("-Dgtk_doc=false")
         self.add_param("-Dvapi=false")
+        print('[mitchhentges:__init__] which sh', shutil.which('sh'))
 
     def build(self, **kwargs):
+        print('[mitchhentges:build] which sh', shutil.which('sh'))
+        self.exec_vs([sys.executable, "-c", "import shutil; print('mitchhentges:exec_vs:shutil', shutil.which('sh'))"])
         Meson.build(self)
         self.install(r".\COPYING share\doc\libadwaita")
