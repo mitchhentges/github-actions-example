@@ -934,6 +934,7 @@ class Builder:
         return s % d
 
     def exec_vs(self, cmd, working_dir=None, add_path=None):
+        print('mitchhentges:builder.vs_env', self.vs_env)
         self.__execute(
             self.__sub_vars(cmd),
             working_dir=working_dir,
